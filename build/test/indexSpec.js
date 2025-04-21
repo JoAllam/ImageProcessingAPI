@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const index_1 = __importDefault(require("../index"));
 const supertest_1 = __importDefault(require("supertest"));
 describe("suite for main endpoint", function () {
-    it("Check how the server handles an expected error", () => __awaiter(this, void 0, void 0, function* () {
+    it("Check how the server handles an unexpected error", () => __awaiter(this, void 0, void 0, function* () {
         let data = yield (0, supertest_1.default)(index_1.default).get('/');
         expect(data.status).toBe(500);
     }));
