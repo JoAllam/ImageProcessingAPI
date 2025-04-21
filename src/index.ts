@@ -1,10 +1,12 @@
-function sum(a: number, b:number):number {
-    if(typeof a !== 'number' || typeof b !== 'number') {
-        throw new Error("Invalid input!")
-    }
-    return a+b;
-}
+import express from 'express'
 
-export default sum
+const app = express();
+const port = 3000;
 
-console.log(sum(3, 4));
+app.get('/', (req, res) => {
+    res.send("App is working");
+})
+
+app.listen(port, () => {
+    console.log(`Server is up on localhost port ${port}`);
+})
