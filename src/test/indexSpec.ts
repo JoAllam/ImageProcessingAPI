@@ -2,8 +2,8 @@ import app from '../index'
 import request from "supertest"
 
 describe("suite for main endpoint", function () {
-    it("Check how the server handles an unexpected error", async () => {
+    it("Check if the server is working", async () => {
         let data = await request(app).get('/')
-        expect(data.status).toBe(500)
+        expect(data.status).toBe(200)
     })
 })
