@@ -9,6 +9,7 @@ const upload_1 = __importDefault(require("./routes/upload"));
 const path_1 = __importDefault(require("path"));
 const app = (0, express_1.default)();
 const port = 3000;
+app.use(express_1.default.urlencoded({ extended: true }));
 app.get('/', (req, res) => {
     res.sendFile(path_1.default.join(__dirname, '../front/index.html'), (err) => {
         if (err) {

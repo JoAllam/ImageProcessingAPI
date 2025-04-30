@@ -11,5 +11,13 @@
         <br><br>
         <input type="submit" value="upload">
     </form>
+    <br><br>
+    <form action="/resize" enctype="multipart/form-data" method="post">
+        <input type="file" name="resize" id="resize">
+        <br><br>
+        <input type="text" id="width" name="width" placeholder="Enter desired width">
+        <input type="text" id="height" name="height" placeholder="Enter desired height">
+        <input type="submit" value="Resize">
+    </form>
 </body>
 </html>

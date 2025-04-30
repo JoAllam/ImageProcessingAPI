@@ -1,5 +1,6 @@
 import express from 'express'
 import multer from 'multer'
+import path from 'path'
 
 let uploadPage = express.Router()
 
@@ -8,7 +9,8 @@ const storage = multer.diskStorage({
         cb(null, 'myPictures/')
     },
     filename: (req, file, cb) => {
-        cb(null, `${file.originalname}.jpg`)
+        let name = path.basename(file.originalname)
+        cb(null, `${name}.jpg`)
     }
 })
 

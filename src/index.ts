@@ -2,10 +2,11 @@ import express from 'express'
 import resize from './routes/resize'
 import upload from './routes/upload'
 import path from 'path'
-import fs from 'fs'
 
 const app = express();
 const port = 3000;
+
+app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req: express.Request, res: express.Response) => {
     res.sendFile(path.join(__dirname, '../front/index.html'), (err) => {
