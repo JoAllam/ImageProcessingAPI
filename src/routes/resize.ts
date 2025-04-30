@@ -1,4 +1,5 @@
 import express from 'express'
+import sharp from 'sharp'
 
 let resize = express.Router()
 

@@ -1,9 +1,14 @@
 import express from 'express'
+import multer from 'multer'
+const upload = multer({dest: 'myPictures/'});
 
-let upload = express.Router()
+let uploadPage = express.Router()
 
-upload.get('/', (req, res) => {
-    res.send("Upload route is working!");
+uploadPage.post('/', upload.single('anime'), (req, res, next) => {
+    let file = req.file;
+    console.log(file);
+    res.send("File Uploaded Successfully!");
+    next();
 })
 
-export default upload
+export default uploadPage

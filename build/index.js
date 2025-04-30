@@ -6,15 +6,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const resize_1 = __importDefault(require("./routes/resize"));
 const upload_1 = __importDefault(require("./routes/upload"));
+const path_1 = __importDefault(require("path"));
 const app = (0, express_1.default)();
 const port = 3000;
 app.get('/', (req, res) => {
-    try {
-        res.status(200).send("App is working!");
-    }
-    catch (err) {
-        res.status(500).send("Server Error");
-    }
+    res.sendFile(path_1.default.join(__dirname, '../front/index.html'), (err) => {
+        if (err) {
+            console.error(err);
+        }
+        else {
+            console.log("HTML File sent successfully!");
+        }
+    });
 });
 app.use('/upload', upload_1.default);
 app.use('/resize', resize_1.default);
