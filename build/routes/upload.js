@@ -17,7 +17,7 @@ const storage = multer_1.default.diskStorage({
     }
 });
 const filter = (req, file, cb) => {
-    if (file.Mime === 'image/jpg') {
+    if (file.mimetype === 'image/jpeg') {
         cb(null, true);
     }
     else {
@@ -26,15 +26,17 @@ const filter = (req, file, cb) => {
 };
 const upload = (0, multer_1.default)({ storage: storage, fileFilter: filter });
 uploadPage.post('/', upload.single('anime'), (req, res, next) => {
-    try {
-        let file = req.file;
-        console.log(file);
-        res.send("File Uploaded Successfully!");
-        next();
+    let file = req.file;
+    console.log(file);
+    res.send("File Uploaded Successfully!");
+    next();
+});
+uploadPage.use((err, req, res, next) => {
+    if (err.message === "Only JPG files are allowed") {
+        return res.status(400).send("Only JPG files are allowed!");
     }
-    catch (err) {
-        console.error(err.message);
-        res.status(500).send(err.message);
+    else {
+        return res.status(500).send("Something went wrong!");
     }
 });
 exports.default = uploadPage;
