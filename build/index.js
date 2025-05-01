@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const resize_1 = __importDefault(require("./routes/resize"));
 const upload_1 = __importDefault(require("./routes/upload"));
+const images_1 = __importDefault(require("./routes/images"));
 const path_1 = __importDefault(require("path"));
 const app = (0, express_1.default)();
 const port = 3000;
@@ -22,6 +23,9 @@ app.get('/', (req, res) => {
 });
 app.use('/upload', upload_1.default);
 app.use('/resize', resize_1.default);
+app.use('/images', images_1.default);
+app.use('/myPictures', express_1.default.static(path_1.default.join(__dirname, '../myPictures')));
+app.use('/build', express_1.default.static(path_1.default.join(__dirname, '../build')));
 app.listen(port, () => {
     console.log(`Server is up on localhost port ${port}`);
 });

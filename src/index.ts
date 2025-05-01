@@ -1,6 +1,7 @@
 import express from 'express'
 import resize from './routes/resize'
 import upload from './routes/upload'
+import images from './routes/images'
 import path from 'path'
 
 const app = express();
@@ -21,6 +22,10 @@ app.get('/', (req: express.Request, res: express.Response) => {
 
 app.use('/upload', upload)
 app.use('/resize', resize)
+app.use('/images', images)
+app.use('/myPictures', express.static(path.join(__dirname, '../myPictures')));
+app.use('/build', express.static(path.join(__dirname, '../build')));
+
 
 app.listen(port, () => {
     console.log(`Server is up on localhost port ${port}`);
