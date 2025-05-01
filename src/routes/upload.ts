@@ -9,7 +9,7 @@ const storage = multer.diskStorage({
         cb(null, 'myPictures/')
     },
     filename: (req, file, cb) => {
-        let name = path.basename(file.originalname)
+        let name = path.basename(file.originalname, '.jpg')
         cb(null, `${name}.jpg`)
     }
 })
@@ -26,8 +26,13 @@ const filter = (req, file, cb) => {
 const upload = multer({storage: storage, fileFilter: filter});
 
 uploadPage.post('/', upload.single('anime'), (req, res, next) => {
+    
         let file = req.file;
         console.log(file);
+        if(!file) {
+            console.error("No file was uploaded");
+            res.status(400).send("No file was uploaded!");
+        }
         res.send("File Uploaded Successfully!");
         next();
 })

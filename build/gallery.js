@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => __awaiter(void 0, void 0, vo
             htmlPicture.classList.add("gallery-image");
             let figure = document.createElement("figure");
             let figcaption = document.createElement("figcaption");
-            figcaption.textContent = picture;
+            figcaption.textContent = picture.slice(0, -4);
             if (!container) {
                 throw new Error("No gallery found");
             }

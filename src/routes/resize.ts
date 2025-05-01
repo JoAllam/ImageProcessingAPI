@@ -2,6 +2,7 @@ import express from 'express'
 import sharp from 'sharp'
 import multer from 'multer'
 import path from 'path'
+import fs from 'fs/promises'
 
 
 let resize = express.Router()
@@ -19,12 +20,15 @@ resize.post('/', upload.single('resize'), async (req, res, next) => {
         const file = req.file;
         const width = req.body.width;
         const height = req.body.height;
-        let newFilename = path.basename(file.originalname.toLowerCase(), '.jpg') + ` - ${width}x${height} resized.jpg`;
+        let newFilePath = path.join(__dirname, '../../myPictures', path.basename(file.originalname, '.jpg') + ` - ${width}x${height} resized.jpg`);
+        let oldFilePath = path.join(__dirname, '../../myPictures', file.originalname)
+
         await sharp(file.buffer) 
             .resize(JSON.parse(width), JSON.parse(height))
-            .toFile(path.join('myPictures', newFilename));
-        console.log("File resized successfully!");
-        console.log(width, height)
+            .toFile(newFilePath);
+        setTimeout(() => {
+            fs.rm(oldFilePath)
+        }, 1000)
         res.send("Image resized successfully");
     }
     catch(err) {

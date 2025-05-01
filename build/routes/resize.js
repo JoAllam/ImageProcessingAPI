@@ -16,6 +16,7 @@ const express_1 = __importDefault(require("express"));
 const sharp_1 = __importDefault(require("sharp"));
 const multer_1 = __importDefault(require("multer"));
 const path_1 = __importDefault(require("path"));
+const promises_1 = __importDefault(require("fs/promises"));
 let resize = express_1.default.Router();
 let upload = (0, multer_1.default)({});
 resize.post('/', upload.single('resize'), (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
@@ -29,12 +30,14 @@ resize.post('/', upload.single('resize'), (req, res, next) => __awaiter(void 0, 
         const file = req.file;
         const width = req.body.width;
         const height = req.body.height;
-        let newFilename = path_1.default.basename(file.originalname.toLowerCase(), '.jpg') + ` - ${width}x${height} resized.jpg`;
+        let newFilePath = path_1.default.join(__dirname, '../../myPictures', path_1.default.basename(file.originalname, '.jpg') + ` - ${width}x${height} resized.jpg`);
+        let oldFilePath = path_1.default.join(__dirname, '../../myPictures', file.originalname);
         yield (0, sharp_1.default)(file.buffer)
             .resize(JSON.parse(width), JSON.parse(height))
-            .toFile(path_1.default.join('myPictures', newFilename));
-        console.log("File resized successfully!");
-        console.log(width, height);
+            .toFile(newFilePath);
+        setTimeout(() => {
+            promises_1.default.rm(oldFilePath);
+        }, 1000);
         res.send("Image resized successfully");
     }
     catch (err) {
