@@ -21,7 +21,7 @@ resize.post('/', upload.single('resize'), async (req, res, next) => {
         const width = req.body.width;
         const height = req.body.height;
         let oldFilePath = path.join(__dirname, '../../myPictures', file.originalname)
-        if(path.basename(file.originalname, '.jpg').indexOf('resized')) {
+        if(path.basename(file.originalname, '.jpg').includes('resized')) {
             let start = path.basename(file.originalname, '.jpg').indexOf('resized');
             file.originalname = file.originalname.slice(0, start);
         }

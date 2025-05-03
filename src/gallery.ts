@@ -28,9 +28,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     await loadGallery();
 
     document.querySelectorAll('.btn').forEach((button) => {
-      button.addEventListener('click', ()=> {
-        setTimeout(loadGallery, 300)
-      });
+      button.addEventListener('click', setTimeout(loadGallery, 300));
     })
 });
 
