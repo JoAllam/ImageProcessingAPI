@@ -19,7 +19,7 @@ const path_1 = __importDefault(require("path"));
 const promises_1 = __importDefault(require("fs/promises"));
 let resize = express_1.default.Router();
 let upload = (0, multer_1.default)({});
-resize.post('/', upload.single('resize'), (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+resize.post('/', (0, multer_1.default)().none(), (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         if (!req.body.resize) {
             console.log(req.body);
@@ -27,16 +27,20 @@ resize.post('/', upload.single('resize'), (req, res, next) => __awaiter(void 0, 
             res.status(400).send("No File Uploaded");
             return;
         }
-        const file = req.body.resize;
+        let file = req.body.resize;
         const width = req.body.width;
         const height = req.body.height;
-        let oldFilePath = path_1.default.join(__dirname, '../../myPictures', file.originalname);
-        if (path_1.default.basename(file.originalname, '.jpg').includes('resized')) {
-            let start = path_1.default.basename(file.originalname, '.jpg').indexOf('resized');
-            file.originalname = file.originalname.slice(0, start);
+        file = path_1.default.basename(file);
+        file = file.replaceAll('%20', ' ');
+        console.log(file);
+        let oldFilePath = path_1.default.join(__dirname, '../../myPictures', file);
+        if (path_1.default.basename(file, '.jpg').includes('resized')) {
+            let start = path_1.default.basename(file, '.jpg').indexOf('resized');
+            file = file.slice(0, start);
         }
-        let newFilePath = path_1.default.join(__dirname, '../../myPictures', path_1.default.basename(file.originalname, '.jpg') + ` resized - ${width}x${height}.jpg`);
-        yield (0, sharp_1.default)(file.buffer)
+        let newFilePath = path_1.default.join(__dirname, '../../myPictures', path_1.default.basename(file, '.jpg') + ` resized - ${width}x${height}.jpg`);
+        let imageBuffer = yield promises_1.default.readFile(oldFilePath);
+        yield (0, sharp_1.default)(imageBuffer)
             .resize(JSON.parse(width), JSON.parse(height))
             .toFile(newFilePath);
         setTimeout(() => {

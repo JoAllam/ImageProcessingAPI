@@ -9,7 +9,7 @@ let resize = express.Router()
 
 let upload = multer({});
 
-resize.post('/', upload.single('resize'), async (req, res, next) => {
+resize.post('/', multer().none(),  async (req, res, next) => {
     try {
         if(!req.body.resize) {
             console.log(req.body)
@@ -17,17 +17,20 @@ resize.post('/', upload.single('resize'), async (req, res, next) => {
             res.status(400).send("No File Uploaded");
             return;
         }
-        const file = req.body.resize;
+        let file = req.body.resize;
         const width = req.body.width;
         const height = req.body.height;
-        let oldFilePath = path.join(__dirname, '../../myPictures', file.originalname)
-        if(path.basename(file.originalname, '.jpg').includes('resized')) {
-            let start = path.basename(file.originalname, '.jpg').indexOf('resized');
-            file.originalname = file.originalname.slice(0, start);
+        file = path.basename(file);
+        file = file.replaceAll('%20', ' ');
+        console.log(file);
+        let oldFilePath = path.join(__dirname, '../../myPictures', file)
+        if(path.basename(file, '.jpg').includes('resized')) {
+            let start = path.basename(file, '.jpg').indexOf('resized');
+            file = file.slice(0, start);
         }
-        let newFilePath = path.join(__dirname, '../../myPictures', path.basename(file.originalname, '.jpg') + ` resized - ${width}x${height}.jpg`);
-
-        await sharp(file.buffer) 
+        let newFilePath = path.join(__dirname, '../../myPictures', path.basename(file, '.jpg') + ` resized - ${width}x${height}.jpg`);
+        let imageBuffer = await fs.readFile(oldFilePath)
+        await sharp(imageBuffer) 
             .resize(JSON.parse(width), JSON.parse(height))
             .toFile(newFilePath);
         setTimeout(() => {
