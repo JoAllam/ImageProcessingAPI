@@ -11,13 +11,13 @@ let upload = multer({});
 
 resize.post('/', upload.single('resize'), async (req, res, next) => {
     try {
-        if(!req.file) {
+        if(!req.body.resize) {
             console.log(req.body)
-            console.log(req.file)
+            console.log(req.body.resize)
             res.status(400).send("No File Uploaded");
             return;
         }
-        const file = req.file;
+        const file = req.body.resize;
         const width = req.body.width;
         const height = req.body.height;
         let oldFilePath = path.join(__dirname, '../../myPictures', file.originalname)

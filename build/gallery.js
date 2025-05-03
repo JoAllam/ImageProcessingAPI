@@ -10,6 +10,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 document.addEventListener("DOMContentLoaded", () => __awaiter(void 0, void 0, void 0, function* () {
     let container = document.getElementById("gallery");
+    if (!container) {
+        throw new Error("No gallery found");
+    }
+    console.log("Loading Gallery!");
     function loadGallery() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
@@ -24,9 +28,6 @@ document.addEventListener("DOMContentLoaded", () => __awaiter(void 0, void 0, vo
                     let figure = document.createElement("figure");
                     let figcaption = document.createElement("figcaption");
                     figcaption.textContent = picture.slice(0, -4);
-                    if (!container) {
-                        throw new Error("No gallery found");
-                    }
                     container.appendChild(figure);
                     figure.appendChild(htmlPicture);
                     figure.appendChild(figcaption);
@@ -38,7 +39,15 @@ document.addEventListener("DOMContentLoaded", () => __awaiter(void 0, void 0, vo
         });
     }
     yield loadGallery();
+    console.log("Gallery Loaded");
+    document.getElementById('gallery').addEventListener('click', (event) => {
+        let resizeBtn = document.getElementById('resize');
+        if (event.target.classList.contains('gallery-image')) {
+            resizeBtn.value = event.target.src;
+        }
+    });
     document.querySelectorAll('.btn').forEach((button) => {
+        console.log("Refreshing Gallery for button");
         button.addEventListener('click', setTimeout(loadGallery, 300));
     });
 }));

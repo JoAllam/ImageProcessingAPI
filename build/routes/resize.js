@@ -21,13 +21,13 @@ let resize = express_1.default.Router();
 let upload = (0, multer_1.default)({});
 resize.post('/', upload.single('resize'), (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        if (!req.file) {
+        if (!req.body.resize) {
             console.log(req.body);
-            console.log(req.file);
+            console.log(req.body.resize);
             res.status(400).send("No File Uploaded");
             return;
         }
-        const file = req.file;
+        const file = req.body.resize;
         const width = req.body.width;
         const height = req.body.height;
         let oldFilePath = path_1.default.join(__dirname, '../../myPictures', file.originalname);
