@@ -20,8 +20,12 @@ resize.post('/', upload.single('resize'), async (req, res, next) => {
         const file = req.file;
         const width = req.body.width;
         const height = req.body.height;
-        let newFilePath = path.join(__dirname, '../../myPictures', path.basename(file.originalname, '.jpg') + ` - ${width}x${height} resized.jpg`);
         let oldFilePath = path.join(__dirname, '../../myPictures', file.originalname)
+        if(path.basename(file.originalname, '.jpg').indexOf('resized')) {
+            let start = path.basename(file.originalname, '.jpg').indexOf('resized');
+            file.originalname = file.originalname.slice(0, start);
+        }
+        let newFilePath = path.join(__dirname, '../../myPictures', path.basename(file.originalname, '.jpg') + ` resized - ${width}x${height}.jpg`);
 
         await sharp(file.buffer) 
             .resize(JSON.parse(width), JSON.parse(height))

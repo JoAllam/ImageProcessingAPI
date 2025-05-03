@@ -9,27 +9,38 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 document.addEventListener("DOMContentLoaded", () => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        let container = document.getElementById("gallery");
-        let response = yield fetch("/images");
-        let pictures = yield response.json();
-        for (let picture of pictures) {
-            let picturePath = `/myPictures/${picture}`;
-            let htmlPicture = document.createElement("img");
-            htmlPicture.src = picturePath;
-            htmlPicture.classList.add("gallery-image");
-            let figure = document.createElement("figure");
-            let figcaption = document.createElement("figcaption");
-            figcaption.textContent = picture.slice(0, -4);
-            if (!container) {
-                throw new Error("No gallery found");
+    let container = document.getElementById("gallery");
+    function loadGallery() {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                let response = yield fetch("/images");
+                let pictures = yield response.json();
+                container.innerHTML = "";
+                for (let picture of pictures) {
+                    let picturePath = `/myPictures/${picture}`;
+                    let htmlPicture = document.createElement("img");
+                    htmlPicture.src = picturePath;
+                    htmlPicture.classList.add("gallery-image");
+                    let figure = document.createElement("figure");
+                    let figcaption = document.createElement("figcaption");
+                    figcaption.textContent = picture.slice(0, -4);
+                    if (!container) {
+                        throw new Error("No gallery found");
+                    }
+                    container.appendChild(figure);
+                    figure.appendChild(htmlPicture);
+                    figure.appendChild(figcaption);
+                }
             }
-            container.appendChild(figure);
-            figure.appendChild(htmlPicture);
-            figure.appendChild(figcaption);
-        }
+            catch (err) {
+                console.error(err);
+            }
+        });
     }
-    catch (err) {
-        console.error(err);
-    }
+    yield loadGallery();
+    document.querySelectorAll('.btn').forEach((button) => {
+        button.addEventListener('click', () => {
+            setTimeout(loadGallery, 300);
+        });
+    });
 }));
