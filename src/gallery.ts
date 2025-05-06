@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", async () => {
-    let container = document.getElementById("gallery");
+    let container = document.getElementById("images");
     if (!container) {
       throw new Error("No gallery found");
     }
@@ -29,10 +29,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     await loadGallery();
     console.log("Gallery Loaded")
 
-    document.getElementById('gallery').addEventListener('click', (event) => {
+    document.getElementById('images').addEventListener('click', (event) => {
       let resizeBtn = document.getElementById('resize');
+      let imageText = document.getElementById('imageText')
       if(event.target.classList.contains('gallery-image')) {
         resizeBtn.value = event.target.src;
+        imageText.textContent = event.target.nextSibling.textContent
       }
     }); 
 

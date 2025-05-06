@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 document.addEventListener("DOMContentLoaded", () => __awaiter(void 0, void 0, void 0, function* () {
-    let container = document.getElementById("gallery");
+    let container = document.getElementById("images");
     if (!container) {
         throw new Error("No gallery found");
     }
@@ -40,10 +40,12 @@ document.addEventListener("DOMContentLoaded", () => __awaiter(void 0, void 0, vo
     }
     yield loadGallery();
     console.log("Gallery Loaded");
-    document.getElementById('gallery').addEventListener('click', (event) => {
+    document.getElementById('images').addEventListener('click', (event) => {
         let resizeBtn = document.getElementById('resize');
+        let imageText = document.getElementById('imageText');
         if (event.target.classList.contains('gallery-image')) {
             resizeBtn.value = event.target.src;
+            imageText.textContent = event.target.nextSibling.textContent;
         }
     });
     document.querySelectorAll('.btn').forEach((button) => {

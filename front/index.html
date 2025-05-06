@@ -4,24 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anime gallery</title>
+    <link rel="stylesheet" type="text/css" href="/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Princess+Sofia&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
     <script src="/build/gallery.js"></script>
 </head>
 <body>
-    <form action="/upload" enctype="multipart/form-data" method="post">
-        <input type="file" name="anime" id="anime">
-        <br><br>
-        <input class="btn" id="submit" type="submit" value="Upload">
-    </form>
+    <header>
+        <h1>Welcome to the Anime Gallery</h1>
+        <p>Upload your favourite anime character or resize one from the gallery!</p>
+    </header>
     <br><br>
-    <form action="/resize" enctype="multipart/form-data" method="post">
-        <input type="hidden" name="resize" id="resize">
-        <br><br>
-        <input type="text" id="width" name="width" placeholder="Enter desired width">
-        <input type="text" id="height" name="height" placeholder="Enter desired height">
-        <input class="btn" type="submit" value="Resize">
-    </form>
-    <div id="gallery">
+    <main>
+        <div id="forms">
+            <form action="/upload" enctype="multipart/form-data" method="post">
+                <input type="file" name="anime" id="anime">
+                <br><br>
+                <input class="btn" id="submit" type="submit" value="Upload">
+            </form>
+            <br><br>
+            <form action="/resize" enctype="multipart/form-data" method="post">
+                <input type="hidden" name="resize" id="resize">
+                <h3 id="imageText">Select an image to resize...</h3>
+                <input type="text" id="width" name="width" placeholder="Enter desired width">
+                <input type="text" id="height" name="height" placeholder="Enter desired height">
+                <input class="btn" type="submit" value="Resize">
+            </form>
+        </div>
+        <br>
+        <div id="gallery">
+            <h1>Anime Gallery</h1>
+            <div id="images"></div>
+        </div>
+    </main>
 
-    </div>
 </body>
 </html>

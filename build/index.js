@@ -26,6 +26,7 @@ app.use('/resize', resize_1.default);
 app.use('/images', images_1.default);
 app.use('/myPictures', express_1.default.static(path_1.default.join(__dirname, '../myPictures')));
 app.use('/build', express_1.default.static(path_1.default.join(__dirname, '../build')));
+app.use(express_1.default.static(path_1.default.join(__dirname, '../front/')));
 app.listen(port, () => {
     console.log(`Server is up on localhost port ${port}`);
 });

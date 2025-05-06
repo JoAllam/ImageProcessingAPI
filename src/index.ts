@@ -25,6 +25,7 @@ app.use('/resize', resize)
 app.use('/images', images)
 app.use('/myPictures', express.static(path.join(__dirname, '../myPictures')));
 app.use('/build', express.static(path.join(__dirname, '../build')));
+app.use(express.static(path.join(__dirname, '../front/')));
 
 
 app.listen(port, () => {
