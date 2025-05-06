@@ -19,17 +19,24 @@
     <main>
         <div id="forms">
             <form action="/upload" enctype="multipart/form-data" method="post">
-                <input type="file" name="anime" id="anime">
-                <br><br>
-                <input class="btn" id="submit" type="submit" value="Upload">
+                <fieldset>
+                    <legend>Upload an image</legend>
+                    <input type="file" name="anime" id="anime" required>
+                    <br><br>
+                    <input class="btn" id="submit" type="submit" value="Upload">
+                </fieldset>
             </form>
             <br><br>
             <form action="/resize" enctype="multipart/form-data" method="post">
-                <input type="hidden" name="resize" id="resize">
-                <h3 id="imageText">Select an image to resize...</h3>
-                <input type="text" id="width" name="width" placeholder="Enter desired width">
-                <input type="text" id="height" name="height" placeholder="Enter desired height">
-                <input class="btn" type="submit" value="Resize">
+                <fieldset>
+                    <legend>Resize an image</legend>
+                    <input type="hidden" name="resize" id="resize" required>
+                    <h3 id="imageText">Select an image to resize...</h3>
+                    <input type="text" id="width" name="width" placeholder="Enter desired width" required pattern="[0-9]+">
+                    <input type="text" id="height" name="height" placeholder="Enter desired height" required pattern="[0-9]+">
+                    <input class="btn" type="submit" value="Resize">
+                    <p>Width shouldn't exceed 900 - Height shouldn't exceed 600 <br>so you don't ruin the page ;)</p>
+                </fieldset>
             </form>
         </div>
         <br>

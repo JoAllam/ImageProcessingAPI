@@ -17,6 +17,18 @@ resize.post('/', multer().none(),  async (req, res, next) => {
             res.status(400).send("No File Uploaded");
             return;
         }
+        else if(!req.body.width) {
+            console.log(req.body)
+            console.log(req.body.width)
+            res.status(400).send("No width determined");
+            return;
+        }
+        else if(!req.body.height) {
+            console.log(req.body)
+            console.log(req.body.height)
+            res.status(400).send("No height determined");
+            return;
+        }
         let file = req.body.resize;
         const width = req.body.width;
         const height = req.body.height;
