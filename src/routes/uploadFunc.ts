@@ -42,7 +42,7 @@ function uploadFunc(router: express.Router): void {
       req: express.Request,
       res: express.Response,
       next: express.NextFunction,
-    ):Promise<void> => {
+    ): Promise<void> => {
       try {
         const file = req.file;
         if (!file) {
@@ -68,7 +68,7 @@ function uploadFunc(router: express.Router): void {
       req: express.Request,
       res: express.Response,
       next: express.NextFunction,
-    ):void => {
+    ): void => {
       if (err.message === "Only JPG files are allowed") {
         next();
         res.status(400).send("Only JPG files are allowed!");
