@@ -4,7 +4,7 @@ import multer from "multer";
 import path from "path";
 import fs from "fs/promises";
 
-async function resizing(
+export async function resizing(
   file: string,
   width: string,
   height: string,
@@ -31,7 +31,8 @@ async function resizing(
   }, 1000);
   return newFilename;
 }
-function resizeFunc(router: express.Router): void {
+
+export function resizeFunc(router: express.Router): void {
   router.post(
     "/",
     multer().none(),
@@ -53,7 +54,11 @@ function resizeFunc(router: express.Router): void {
           res.status(400).send("No height determined");
           return;
         }
-        let file = resizing(req.body.resize, req.body.width, req.body.height);
+        let file = await resizing(
+          req.body.resize,
+          req.body.width,
+          req.body.height,
+        );
         res
           .status(200)
           .send(
@@ -66,5 +71,3 @@ function resizeFunc(router: express.Router): void {
     },
   );
 }
-
-export default resizeFunc;

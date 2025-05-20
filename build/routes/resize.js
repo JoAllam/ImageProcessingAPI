@@ -6,7 +6,7 @@ var __importDefault =
   };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const resizeFunc_1 = __importDefault(require("./resizeFunc"));
+const resizeFunc_1 = require("./resizeFunc");
 const resize = express_1.default.Router();
-(0, resizeFunc_1.default)(resize);
+(0, resizeFunc_1.resizeFunc)(resize);
 exports.default = resize;

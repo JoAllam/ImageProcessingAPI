@@ -5,6 +5,7 @@ var __importDefault =
     return mod && mod.__esModule ? mod : { default: mod };
   };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.imagesFunc = imagesFunc;
 const fs_1 = __importDefault(require("fs"));
 const path_1 = __importDefault(require("path"));
 function imagesFunc(router) {
@@ -21,4 +22,3 @@ function imagesFunc(router) {
     });
   });
 }
-exports.default = imagesFunc;

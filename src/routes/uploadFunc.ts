@@ -3,7 +3,7 @@ import path from "path";
 import fs from "fs";
 import express from "express";
 
-function uploadFunc(router: express.Router): void {
+export function uploadFunc(router: express.Router): void {
   const imagesDir = fs.readdirSync(path.resolve(__dirname, "../../myPictures"));
 
   console.log(imagesDir);
@@ -82,5 +82,3 @@ function uploadFunc(router: express.Router): void {
     },
   );
 }
-
-export default uploadFunc;

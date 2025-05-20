@@ -5,6 +5,8 @@ var __importDefault =
     return mod && mod.__esModule ? mod : { default: mod };
   };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.resizing = resizing;
+exports.resizeFunc = resizeFunc;
 const sharp_1 = __importDefault(require("sharp"));
 const multer_1 = __importDefault(require("multer"));
 const path_1 = __importDefault(require("path"));
@@ -55,7 +57,11 @@ function resizeFunc(router) {
         res.status(400).send("No height determined");
         return;
       }
-      let file = resizing(req.body.resize, req.body.width, req.body.height);
+      let file = await resizing(
+        req.body.resize,
+        req.body.width,
+        req.body.height,
+      );
       res
         .status(200)
         .send(
@@ -67,4 +73,3 @@ function resizeFunc(router) {
     }
   });
 }
-exports.default = resizeFunc;

@@ -1,5 +1,5 @@
 import express from "express";
-import uploadFunc from "./uploadFunc";
+import { uploadFunc } from "./uploadFunc";
 
 const uploadPage = express.Router();
 

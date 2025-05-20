@@ -6,7 +6,7 @@ var __importDefault =
   };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const imagesFunc_1 = __importDefault(require("./imagesFunc"));
+const imagesFunc_1 = require("./imagesFunc");
 const images = express_1.default.Router();
-(0, imagesFunc_1.default)(images);
+(0, imagesFunc_1.imagesFunc)(images);
 exports.default = images;

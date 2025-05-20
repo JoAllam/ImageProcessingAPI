@@ -2,7 +2,7 @@ import express from "express";
 import fs from "fs";
 import path from "path";
 
-function imagesFunc(router: express.Router): void {
+export function imagesFunc(router: express.Router): void {
   router.get("/", (req: express.Request, res: express.Response): void => {
     res.set("Cache-Control", "no-store");
     const imagesPath = path.resolve(__dirname, "../../myPictures");
@@ -16,5 +16,3 @@ function imagesFunc(router: express.Router): void {
     });
   });
 }
-
-export default imagesFunc;
