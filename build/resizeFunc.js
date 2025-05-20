@@ -15,7 +15,7 @@ async function resizing(file, width, height) {
   file = path_1.default.basename(file);
   file = file.replaceAll("%20", " ");
   console.log(file);
-  const oldFilePath = path_1.default.join(__dirname, "../../myPictures", file);
+  const oldFilePath = path_1.default.join(__dirname, "../myPictures", file);
   if (path_1.default.basename(file, ".jpg").includes("resized")) {
     const start = path_1.default.basename(file, ".jpg").indexOf("resized");
     file = file.slice(0, start);
@@ -26,7 +26,7 @@ async function resizing(file, width, height) {
   newFilename = newFilename.replaceAll("%20", " ");
   const newFilePath = path_1.default.join(
     __dirname,
-    "../../myPictures",
+    "../myPictures",
     newFilename,
   );
   const imageBuffer = await promises_1.default.readFile(oldFilePath);

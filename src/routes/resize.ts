@@ -1,5 +1,5 @@
 import express from "express";
-import { resizeFunc } from "./resizeFunc";
+import { resizeFunc } from "../resizeFunc";
 
 const resize = express.Router();
 

@@ -6,7 +6,7 @@ var __importDefault =
   };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const uploadFunc_1 = require("./uploadFunc");
+const uploadFunc_1 = require("../uploadFunc");
 const uploadPage = express_1.default.Router();
 (0, uploadFunc_1.uploadFunc)(uploadPage);
 exports.default = uploadPage;

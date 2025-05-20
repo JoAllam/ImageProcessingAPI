@@ -4,7 +4,7 @@ import fs from "fs";
 import express from "express";
 
 export function uploadFunc(router: express.Router): void {
-  const imagesDir = fs.readdirSync(path.resolve(__dirname, "../../myPictures"));
+  const imagesDir = fs.readdirSync(path.resolve(__dirname, "../myPictures"));
 
   console.log(imagesDir);
 

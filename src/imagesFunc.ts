@@ -5,7 +5,7 @@ import path from "path";
 export function imagesFunc(router: express.Router): void {
   router.get("/", (req: express.Request, res: express.Response): void => {
     res.set("Cache-Control", "no-store");
-    const imagesPath = path.resolve(__dirname, "../../myPictures");
+    const imagesPath = path.resolve(__dirname, "../myPictures");
     fs.readdir(imagesPath, (err, data) => {
       if (err) {
         console.error(err);

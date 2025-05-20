@@ -8,11 +8,14 @@ export async function resizing(
   file: string,
   width: string,
   height: string,
-): Promise<string> {
+): Promise<{
+  name: string;
+  path: string;
+}> {
   file = path.basename(file);
   file = file.replaceAll("%20", " ");
   console.log(file);
-  const oldFilePath = path.join(__dirname, "../../myPictures", file);
+  const oldFilePath = path.join(__dirname, "../myPictures", file);
   if (path.basename(file, ".jpg").includes("resized")) {
     const start = path.basename(file, ".jpg").indexOf("resized");
     file = file.slice(0, start);
@@ -21,7 +24,7 @@ export async function resizing(
     path.basename(file, ".jpg") + ` resized - ${width}x${height}.jpg`,
   );
   newFilename = newFilename.replaceAll("%20", " ");
-  const newFilePath = path.join(__dirname, "../../myPictures", newFilename);
+  const newFilePath = path.join(__dirname, "../myPictures", newFilename);
   const imageBuffer = await fs.readFile(oldFilePath);
   await sharp(imageBuffer)
     .resize(JSON.parse(width), JSON.parse(height))
@@ -29,7 +32,7 @@ export async function resizing(
   setTimeout(() => {
     fs.rm(oldFilePath);
   }, 1000);
-  return newFilename;
+  return { name: newFilename, path: newFilePath };
 }
 
 export function resizeFunc(router: express.Router): void {
@@ -54,15 +57,16 @@ export function resizeFunc(router: express.Router): void {
           res.status(400).send("No height determined");
           return;
         }
-        let file = await resizing(
+        const file = await resizing(
           req.body.resize,
           req.body.width,
           req.body.height,
         );
+        const filename: string = file.name;
         res
           .status(200)
           .send(
-            `Image resized successfully! \nAccess the file from here: <a href="/myPictures/${file}" class="">Image API URL</a>`,
+            `Image resized successfully! \nAccess the file from here: <a href="/myPictures/${filename}" class="">Image API URL</a>`,
           );
       } catch (err) {
         console.error(err);

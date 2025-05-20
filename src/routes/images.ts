@@ -1,5 +1,5 @@
 import express from "express";
-import { imagesFunc } from "./imagesFunc";
+import { imagesFunc } from "../imagesFunc";
 
 const images = express.Router();
 
