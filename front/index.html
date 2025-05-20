@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Anime gallery</title>
+    <link rel="stylesheet" type="text/css" href="/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Princess+Sofia&family=Quicksand:wght@300..700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="/build/gallery.js"></script>
+  </head>
+  <body>
+    <header>
+      <h1>Welcome to the Anime Gallery</h1>
+      <p>
+        Upload your favourite anime character or resize one from the gallery!
+      </p>
+    </header>
+    <br /><br />
+    <main>
+      <div id="forms">
+        <form action="/upload" enctype="multipart/form-data" method="post">
+          <fieldset>
+            <legend>Upload an image</legend>
+            <input type="file" name="anime" id="anime" />
+            <br /><br />
+            <input class="btn" id="submit" type="submit" value="Upload" />
+          </fieldset>
+        </form>
+        <br /><br />
+        <form action="/resize" enctype="multipart/form-data" method="post">
+          <fieldset>
+            <legend>Resize an image</legend>
+            <input type="hidden" name="resize" id="resize" required />
+            <h3 id="imageText">Select an image to resize...</h3>
+            <input
+              type="text"
+              id="width"
+              name="width"
+              placeholder="Enter desired width"
+              required
+              pattern="[0-9]+"
+            />
+            <input
+              type="text"
+              id="height"
+              name="height"
+              placeholder="Enter desired height"
+              required
+              pattern="[0-9]+"
+            />
+            <input class="btn" type="submit" value="Resize" />
+            <p>
+              Width shouldn't exceed 900 - Height shouldn't exceed 600 <br />so
+              you don't ruin the page ;)
+            </p>
+          </fieldset>
+        </form>
+      </div>
+      <br />
+      <div id="gallery">
+        <h1>Anime Gallery</h1>
+        <div id="images"></div>
+      </div>
+    </main>
+  </body>
+</html>

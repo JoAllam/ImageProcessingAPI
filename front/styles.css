@@ -1,0 +1,82 @@
+* {
+  font-family: quicksand;
+}
+#images {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+figure {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.gallery-image {
+  border-radius: 10px;
+  box-shadow: 1px 1px 2px 2px black;
+  transition: scale 0.3s ease-in;
+}
+
+.gallery-image:hover {
+  scale: 0.9;
+}
+
+.gallery-image:target {
+  box-shadow: 5px 5px 5px 5px red;
+}
+
+figcaption {
+  font-family: "Princess Sofia";
+  font-weight: bold;
+  font-size: 1.4em;
+}
+
+#gallery h1 {
+  margin: 25px;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-image: linear-gradient(
+    90deg,
+    hsl(240deg 100% 20%) 0%,
+    hsl(270deg 100% 21%) 8%,
+    hsl(286deg 100% 21%) 17%,
+    hsl(301deg 100% 21%) 25%,
+    hsl(313deg 100% 26%) 33%,
+    hsl(322deg 100% 30%) 42%,
+    hsl(329deg 100% 35%) 50%,
+    hsl(335deg 100% 38%) 58%,
+    hsl(339deg 100% 42%) 67%,
+    hsl(344deg 100% 44%) 75%,
+    hsl(348deg 100% 47%) 83%,
+    hsl(352deg 100% 49%) 92%,
+    hsl(0deg 100% 50%) 100%
+  );
+  color: white;
+  border-radius: 10px;
+}
+
+#forms {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+fieldset {
+  border: 2px solid black;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: aliceblue;
+}
+
+input[type="submit"] {
+  background-color: rgb(255, 1, 1);
+  color: whitesmoke;
+  padding: 5px;
+  border-radius: 5px;
+}
