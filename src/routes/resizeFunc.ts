@@ -8,7 +8,7 @@ function resizeFunc(router: express.Router): void {
   router.post(
     "/",
     multer().none(),
-    async (req: express.Request, res: express.Response) => {
+    async (req: express.Request, res: express.Response):Promise<void> => {
       try {
         if (!req.body.resize) {
           console.log(req.body);
