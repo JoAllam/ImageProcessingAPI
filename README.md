@@ -1,6 +1,7 @@
 # ImageProcessingAPI
+
 A Single-Webpage Website that allows you to upload images to a specific directory (let's call it myDirectory)
-and resize these images later whenever you like. 
+and resize these images later whenever you like.
 The Webpage shows a gallery of the images in myDirectory and allows you to choose an image from them to resize.
 
 ## Endpoints:-
@@ -16,6 +17,7 @@ There are other routes but you don't need access to them as they are only necess
 You don't need to navigate to any of the routes except the main route, as the main route provides forms that accesses the other routes and exploits their functions.
 
 ## Scripts:-
+
 - npm run build: to build typescript files into javascript files
 - npm run start: to start the server (application)
 - npm run test: to run the tests
@@ -23,7 +25,7 @@ You don't need to navigate to any of the routes except the main route, as the ma
 - npm run prettierCheck: to run prettier and make it check for any recommended actions
 - npm run prettierWrite: to run prettier and force recommended actions
 
-## Tests:- 
+## Tests:-
+
 There are four suites for the four main routes.
 The tests only check for the default actions without any input provided or errors invoked.
-
