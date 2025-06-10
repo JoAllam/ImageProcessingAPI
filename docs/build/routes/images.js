@@ -11,7 +11,7 @@ const path_1 = __importDefault(require("path"));
 const images = express_1.default.Router();
 images.get("/", (req, res) => {
   res.set("Cache-Control", "no-store");
-  const imagesPath = path_1.default.resolve(__dirname, "../myPictures");
+  const imagesPath = path_1.default.resolve(__dirname, "../../myPictures");
   fs_1.default.readdir(imagesPath, (err, data) => {
     if (err) {
       console.error(err);
