@@ -7,6 +7,7 @@ var __importDefault =
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const uploadFunc_1 = __importDefault(require("../uploadFunc"));
+const fs_1 = __importDefault(require("fs"));
 const uploadPage = express_1.default.Router();
 uploadPage.post(
   "/",
@@ -24,6 +25,18 @@ uploadPage.post(
         .send(
           `File Uploaded Successfully! \nAccess the file from here: <a href="${file.path}" class="">Image API URL</a>`,
         );
+      setTimeout(
+        () => {
+          fs_1.default.unlink(file.path, (err) => {
+            if (err) {
+              console.error("Failed to delete file:", err);
+            } else {
+              console.log("Deleted file:", file.path);
+            }
+          });
+        },
+        5 * 60 * 1000,
+      );
       next();
     } catch (err) {
       console.error(err);
