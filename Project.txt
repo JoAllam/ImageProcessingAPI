@@ -1,0 +1,41 @@
+Questions for the programming session:
+
+part for handling missing filename, height or width
+or invalid input. can it be done by HTML or must it
+be error handling in the backend?
+
+ans/ can be both, mainly HTML
+
+and should there be a limit for resize because
+if the resized picture is too big, it will take
+a lot of space in the webpage
+
+ans/ you can, but I will make it a suggestion
+rather than a must.
+
+should the resized image replace the old one or not?
+
+ans/ as I like
+
+Multer doesn't allow same pictures to 
+upload again on its own,
+so how am I supposed to handle or do that?
+
+ans/ I have to because multer replaces the file
+and that slows down everything.
+
+Things to do:-
+- Add check if the file already exists and stop
+everything from continuing if it does.  Check!
+- Return an API URL of the uploaded or resized
+image after it gets uploaded or resized. Check!
+API URL example: /localhost:3000/myPictures/Fushigiro.jpg
+- Error handling for everything and send 200 status Check!
+- Unit Testing!! Check!
+
+Improvements:
+- Accept other image formats than JPG
+- console logging everything!!
+- Add comments
+- Write README Check
+- Move gallery js file to front folder
