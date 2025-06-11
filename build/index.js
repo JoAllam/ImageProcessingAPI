@@ -16,7 +16,7 @@ app.use(express_1.default.urlencoded({ extended: true }));
 app.get("/", (req, res) => {
   res
     .status(200)
-    .sendFile(path_1.default.join(__dirname, "../front/index.html"), (err) => {
+    .sendFile(path_1.default.join(__dirname, "../index.html"), (err) => {
       if (err) {
         console.error(err);
         res
@@ -38,7 +38,7 @@ app.use(
   "/build",
   express_1.default.static(path_1.default.join(__dirname, "../build")),
 );
-app.use(express_1.default.static(path_1.default.join(__dirname, "../front/")));
+app.use(express_1.default.static(path_1.default.join(__dirname, "../")));
 app.listen(port, () => {
   console.log(`Server is up on localhost port ${port}`);
 });
