@@ -1,6 +1,5 @@
 import express from "express";
 import upload from "../uploadFunc";
-import fs from "fs";
 
 const uploadPage = express.Router();
 
@@ -25,19 +24,6 @@ uploadPage.post(
         .send(
           `File Uploaded Successfully! \nAccess the file from here: <a href="${file.path}" class="">Image API URL</a>`,
         );
-
-      setTimeout(
-        () => {
-          fs.unlink(file.path, (err: any | null) => {
-            if (err) {
-              console.error("Failed to delete file:", err);
-            } else {
-              console.log("Deleted file:", file.path);
-            }
-          });
-        },
-        5 * 60 * 1000,
-      );
       next();
     } catch (err) {
       console.error(err);
